@@ -27,8 +27,7 @@ services:
       - .env
     pull_policy: always
     user: "root"
-    command:
-      - /app/kestra server standalone --worker-thread=128
+    command: server standalone
     volumes:
       - kestra-data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock

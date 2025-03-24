@@ -21,6 +21,6 @@ tasks:
       containerImage: python:3.11
       beforeCommands:
         - pip install -r dlt/requirements.txt
-        - dlt --non-interactive init chitraffic filesystem
+        - dlt --non-interactive init chitraffic_api filesystem
       commands:
         - python dlt/chit_pipeline.py
