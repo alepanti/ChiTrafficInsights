@@ -13,15 +13,8 @@ provider "google" {
   region  = var.region
 }
 
-# Create service account
-resource "google_service_account" "create_svc_act" {
-  account_id   = var.svc_account
-  display_name = "Cloud Run Service Account"
-}
-
 # Add permissions to service account
 resource "google_project_iam_member" "setup_svc_account" {
-  depends_on = [google_service_account.create_svc_act]
   for_each = toset([
     "roles/storage.admin",
     "roles/bigquery.admin",

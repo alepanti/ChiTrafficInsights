@@ -12,9 +12,15 @@ tasks:
 
     - id: pythonScript
       type: io.kestra.plugin.scripts.python.Commands
+      env:
+        GCS_URL: "{{kv('GCS_URL')}}"
+        CREDENTIALS__PROJECT_ID: "{{ secret('BIGQUERY_PROJECT_ID') }}"
+        CREDENTIALS__PRIVATE_KEY: "{{ secret('BIGQUERY_PRIVATE_KEY') }}"
+        CREDENTIALS__CLIENT_EMAIL: "{{ secret('BIGQUERY_CLIENT_EMAIL') }}"
       warningOnStdErr: false
       containerImage: python:3.11
       beforeCommands:
         - pip install -r dlt/requirements.txt
+        - dlt --non-interactive init chitraffic filesystem
       commands:
         - python dlt/chit_pipeline.py

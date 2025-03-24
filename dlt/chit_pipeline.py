@@ -43,6 +43,7 @@ pipeline = dlt.pipeline(
     pipeline_name="chit_pipeline",
     destination="filesystem",
     dataset_name="chicago_traffic_data",
+    credentials=os.getenv("GCS_URL")
 )
 
 load_info = pipeline.run(fetch_traffic_data(pipeline))

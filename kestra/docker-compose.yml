@@ -28,7 +28,6 @@ services:
     pull_policy: always
     user: "root"
     command:
-      - -c
       - /app/kestra server standalone --worker-thread=128
     volumes:
       - kestra-data:/app/storage
