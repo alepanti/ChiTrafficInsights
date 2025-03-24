@@ -81,6 +81,10 @@ resource "google_compute_instance" "kestra_vm" {
     access_config {} # Enables external IP
   }
 
+  metadata = {
+    env_b64 = var.env_b64
+  }
+
   metadata_startup_script = <<-EOT
     #!/bin/bash
     sudo apt update && sudo apt install -y docker.io docker-compose curl
@@ -89,8 +93,12 @@ resource "google_compute_instance" "kestra_vm" {
     sudo systemctl start docker
     sudo systemctl enable docker
 
+    # Decode the .env file from metadata
+    curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/env_b64 | base64 --decode > /home/kestra/.env
+    chmod 600 /home/kestra/.env
+
     # Download compose file for kestra
-    curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/DE-zoomcamp-workspace/refs/heads/main/docker-compose.yml
+    curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/docker-compose.yml
 
     # Run Kestra
     sudo docker-compose up -d

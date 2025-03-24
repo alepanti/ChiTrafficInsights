@@ -38,3 +38,6 @@ override.tf.json
 
 # Ignore all JSON files
 **/*.json
+**/.env*
+
+**/*.tfvars

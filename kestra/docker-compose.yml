@@ -23,6 +23,8 @@ services:
   kestra:
     restart: always
     image: kestra/kestra:latest-full
+    env_file:
+      - .env
     pull_policy: always
     user: "root"
     command:

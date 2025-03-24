@@ -2,33 +2,11 @@ id: kv
 namespace: chi-traffic
 
 tasks:
-  - id: gcp_creds
-    type: io.kestra.plugin.core.kv.Set
-    key: GCP_CREDS
-    kvType: JSON
-    value: | # TODO replace with service account key
-      {
-        "type": "service_account",
-        ...
-      }
-
-  - id: gcp_email
-    type: io.kestra.plugin.core.kv.Set
-    key: GCP_EMAIL
-    kvType: STRING
-    value: chi-pipeline@chicago-traffic-453615.iam.gserviceaccount.com # TODO replace with SA email
-
-  - id: gcp_project_id
-    type: io.kestra.plugin.core.kv.Set
-    key: GCP_PROJECT_ID
-    kvType: STRING
-    value: chicago-traffic-453615 # TODO replace with your project id
-
   - id: gcp_bucket_name
     type: io.kestra.plugin.core.kv.Set
     key: GCP_BUCKET_NAME
     kvType: STRING
-    value: chi-traffic-json # TODO make sure it's globally unique!
+    value: chi-traffic-json
 
   - id: gcp_dataset
     type: io.kestra.plugin.core.kv.Set
