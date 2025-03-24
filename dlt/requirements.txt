@@ -1,0 +1,4 @@
+dlt[filesystem]>=1.6.1
+requests
+os
+datetime
