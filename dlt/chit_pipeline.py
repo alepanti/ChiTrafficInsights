@@ -38,12 +38,11 @@ def fetch_traffic_data(pipeline):
         yield from data
 
         offset += limit
-
+dlt.config["destination.filesystem.bucket_url"] = os.getenv("GCS_URL")
 pipeline = dlt.pipeline(
     pipeline_name="chit_pipeline",
     destination="filesystem",
     dataset_name="chicago_traffic_data",
-    credentials=os.getenv("GCS_URL")
 )
 
 load_info = pipeline.run(fetch_traffic_data(pipeline))
