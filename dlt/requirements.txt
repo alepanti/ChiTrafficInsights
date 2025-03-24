@@ -1,4 +1,2 @@
 dlt[filesystem]>=1.6.1
-requests
-os
-datetime
+requests>=2.31.0

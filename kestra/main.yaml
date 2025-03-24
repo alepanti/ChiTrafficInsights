@@ -1,0 +1,20 @@
+id: main
+namespace: chi-traffic
+
+tasks:
+  - id: workingDirectory
+    type: io.kestra.plugin.core.flow.WorkingDirectory
+    tasks:
+    - id: cloneRepository
+      type: io.kestra.plugin.git.Clone
+      url: https://github.com/alepanti/ChiTrafficInsights
+      branch: main
+
+    - id: pythonScript
+      type: io.kestra.plugin.scripts.python.Commands
+      warningOnStdErr: false
+      containerImage: python:3.11
+      beforeCommands:
+        - pip install -r dlt/requirements.txt
+      commands:
+        - python dlt/chit_pipeline.py
