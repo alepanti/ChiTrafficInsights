@@ -40,6 +40,7 @@ def fetch_traffic_data(pipeline):
         offset += limit
 
 gcs_url = os.getenv("GCS_URL")
+print(f"GCS_URL: {gcs_url}")
 if not gcs_url:
     raise ValueError("GCS_URL is not set. Ensure it is passed correctly via Kestra secrets.")
 
