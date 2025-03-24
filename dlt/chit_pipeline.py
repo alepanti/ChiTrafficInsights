@@ -18,7 +18,7 @@ def get_api_url(since_time):
 @dlt.resource(name="chicago_traffic", write_disposition="append")
 def fetch_traffic_data(pipeline):
 
-    last_timestamp = BACKFILL_DATE or pipeline.state.get("last_timestamp", start_date)
+    last_timestamp = BACKFILL_DATE or start_date
     offset = 0
     limit = 1000  # API allows a max of 1000 rows per request
     print(last_timestamp)

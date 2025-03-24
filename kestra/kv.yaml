@@ -9,16 +9,7 @@ tasks:
     value: | # TODO replace with service account key
       {
         "type": "service_account",
-        "project_id": "chicago-traffic-453615",
-        "private_key_id": "2d389f4fe23d00c0560aad79f3294ad1a2704b6b",
-        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDMwSMpnSq9Icn0\nfCsLRcX6NOTR4L1fBYzSxY8jeX7EOg7BuIG6dzB7710yufgSH3VjOJ2ogtA2TJ8p\nlSExbBwjadA0RV/JaLEhsL9Rg/uTQAzQgJqb/q+eWzkDjl7Cg8mn2WGgB/UVMDHP\nQdw2jX7b+v6rOkkfwQ98Dh7ICZhahbRNyviHfkcjsmiozuThlSSz+OY8FmxVyBx5\nuI8NYkR55DkJhNuOKfiuYHhvVJSUBWgmQR/YJBdoqqGpHx/qCGvVjKXrh5P850//\nFEnw9uzO78uFs4FdWy6EyNBYUd3yVJCpfx9oswKroIy5A8/C2rBA0SZa8wb7/pSV\nGIX4iOk1AgMBAAECggEAD5hiVOgV+kPZkwKQxhIGwJueFhJCZOYSUiIereVcxMC7\nS6wBotyIgoK6cYOn+RFmVSwEbhz7PjeFzpqqOuPGHOMRVaSMZYB7hVpl/WUfw0PB\n9huQKx4x7XjQleHBJpr3wA4W7nkiBKl1ZxjYF1udnvm2GKqe096rju0Fu9dnQEsD\nCoWs6kY5BOOrnYsARixzb+GuOeKQ67ZeDsFZHv0PsTzdlhNWoUtv6AdPpdmAoEWS\nJSoVpFf/Nufi+LxNoBmhSOKLYdloah4GheHlS3WSkAnEvkH2Wg3AcIM5teAdogo8\nAv9n3uG2hYxOj+6Deb70j+NWd7RXjk3Nnsz9kJfLPQKBgQD9ncIUM848d39CG528\n5TL/ZkSARo/estnwDzIYi/WrwbqCsAHKOP5BPe4ejeI8H3tywTUFFfvWbbUMP0G6\nORfrz1ALMsIohg+3iv3cx/EjpRaD5sqL6uEaVhHQid3vMyWWVO378sTPRAxG2LnB\nQnYS9rPlMo+pPNjE8dMXtps+RwKBgQDOrc9PYR4NE8uYr1nInsANYy/wgOD/Ik8H\nhLp5BLSm5J2tg7TqSgESKA38I8BGahEKTG+BdhXQT6S/NqaWt2wp8OBlgF4viS4H\nreYoXkOD6fJ43txp8yn2dSFAVeO+OQcKeS4y0IE/8GaJqc2ZoC9dQlLzA31NpONi\nGGA798SuowKBgELjyd1UMI/IIJtJ91dryACOc4C1m5pr54kmKNtKhrgPN2bijwZL\n89s3P0d1unaLAx8oEBjQTISomLirMmWwSzvZiM37TDQt75VEJmKFpXb2QrL1OvSe\nNVKh4r7yrcM55S76JW5vADN+ShKhdJShN80WninUJQnIz49aDIfTlKxfAoGAWben\nk3zED8c1DT2pSuZm1ijlaZB4mygoiEn8rIX3aa86J1VSFpYzas9KataWI7rtVLwj\nd15sT7YS/RJbNHfBE1/F+SnFOPtiqOC7VXC9/Ch1IjUUF0YAREVKPuRJ7YxR2yEJ\nhfNu9/OCf2Xfoz2e8evVmDo+jZLzReTw+XcvwOMCgYBQWISRM7dB6yClO4rjb9mv\nsN3OfXpFnsLATfxnpJsD/3hlWU0z5bAqMlqoa1xIv/b44fU5hKy3V2GJtPuVHO0C\nCaiDtS34CoKNu0WtrIIVuhTb4fo229p7BgsovuveDxO2OXsbnAFoLdOJHvalC49j\nn5cGdgzybwVvfHgz3N+CdQ==\n-----END PRIVATE KEY-----\n",
-        "client_email": "chi-pipeline@chicago-traffic-453615.iam.gserviceaccount.com",
-        "client_id": "107605571554100548837",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://oauth2.googleapis.com/token",
-        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chi-pipeline%40chicago-traffic-453615.iam.gserviceaccount.com",
-        "universe_domain": "googleapis.com"
+        ...
       }
 
   - id: gcp_email
