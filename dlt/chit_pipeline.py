@@ -3,6 +3,11 @@ import requests
 import os
 from datetime import datetime, UTC, timedelta
 
+#DEBUGGING
+print("BIGQUERY_PROJECT_ID:", os.getenv("BIGQUERY_PROJECT_ID"))
+print("BIGQUERY_PRIVATE_KEY:", os.getenv("BIGQUERY_PROJECT_ID"))
+print("BIGQUERY_CLIENT_EMAIL:", os.getenv("BIGQUERY_PROJECT_ID"))
+
 # Chicago Data Portal API
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
 
