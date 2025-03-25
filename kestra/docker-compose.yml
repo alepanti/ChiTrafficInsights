@@ -32,7 +32,7 @@ services:
       - kestra-data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/kestra-wd:/tmp/kestra-wd
-      - ~/.gcp/creds.json:/.gcp/credentials.json
+      - /home/kestra/creds.json:/.gcp/credentials.json
     environment:
       SECRET_GOOGLE_APPLICATION_CREDENTIALS: '/.gcp/credentials.json'
       KESTRA_CONFIGURATION: |

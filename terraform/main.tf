@@ -76,6 +76,7 @@ resource "google_compute_instance" "kestra_vm" {
 
   metadata = {
     env_b64 = var.env_b64
+    file_b64    = file(".gcp/creds.json")
   }
 
   metadata_startup_script = <<-EOT
@@ -89,9 +90,11 @@ resource "google_compute_instance" "kestra_vm" {
     sudo mkdir -p /home/kestra
     cd /home/kestra
 
-    # Decode the .env file from metadata
     sudo curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/env_b64 | base64 --decode > .env
     sudo chmod 600 .env
+
+    sudo curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/file_b64 | base64 --decode > creds.json
+    sudo chmod 644 creds.json
 
     # Download compose file for kestra
     sudo curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/docker-compose.yml
