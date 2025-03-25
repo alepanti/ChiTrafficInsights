@@ -23,6 +23,8 @@ services:
   kestra:
     restart: always
     image: kestra/kestra:latest-full
+    env_file:
+      - .env
     pull_policy: always
     user: "root"
     command: server standalone
@@ -30,9 +32,7 @@ services:
       - kestra-data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/kestra-wd:/tmp/kestra-wd
-      - ./.gcp/creds.json:/.gcp/creds.json
     environment:
-      KESTRA_GOOGLE_APPLICATION_CREDENTIALS: '/.gcp/creds.json'
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
