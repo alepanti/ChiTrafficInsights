@@ -4,9 +4,8 @@ import os
 from datetime import datetime, UTC, timedelta
 
 #DEBUGGING
-print("BIGQUERY_PROJECT_ID:", os.getenv("BIGQUERY_PROJECT_ID"))
-print("BIGQUERY_PRIVATE_KEY:", os.getenv("BIGQUERY_PROJECT_ID"))
-print("BIGQUERY_CLIENT_EMAIL:", os.getenv("BIGQUERY_PROJECT_ID"))
+print("PROJECT ID:", os.getenv("DESTINATION__CREDENTIALS__PROJECT_ID"))
+print("CLIENT_EMAIL:", os.getenv("DESTINATION__CREDENTIALS__CLIENT_EMAIL"))
 
 # Chicago Data Portal API
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
