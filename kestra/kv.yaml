@@ -13,3 +13,15 @@ tasks:
     key: GCP_DATASET
     kvType: STRING
     value: chi_traffic
+  
+  - id: gcp_project_id
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_PROJECT_ID
+    kvType: STRING
+    value: chicago-traffic-453615
+  
+  - id: gcp_client_email
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_CLIENT_EMAIL
+    kvType: STRING
+    value: chi-pipeline@chicago-traffic-453615.iam.gserviceaccount.com

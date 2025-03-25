@@ -41,5 +41,5 @@ override.tf.json
 **/.env*
 
 **/*.tfvars
-
+.gcp
 scratch.txt

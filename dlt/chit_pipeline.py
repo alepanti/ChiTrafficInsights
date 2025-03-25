@@ -5,6 +5,7 @@ from datetime import datetime, UTC, timedelta
 
 #DEBUGGING
 print("PROJECT ID:", os.getenv("DESTINATION__CREDENTIALS__PROJECT_ID"))
+print("private key:", os.getenv("DESTINATION__CREDENTIALS__PRIVATE_KEY"))
 print("CLIENT_EMAIL:", os.getenv("DESTINATION__CREDENTIALS__CLIENT_EMAIL"))
 
 # Chicago Data Portal API

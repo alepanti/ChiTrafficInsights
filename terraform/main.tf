@@ -86,15 +86,8 @@ resource "google_compute_instance" "kestra_vm" {
     sudo systemctl start docker
     sudo systemctl enable docker
 
-    sudo mkdir -p /home/kestra
-    cd /home/kestra
-
-    # Decode the .env file from metadata
-    curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/env_b64 | base64 --decode > .env
-    chmod 600 .env
-
     # Download compose file for kestra
-    curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/docker-compose.yml
+    sudo curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/docker-compose.yml
 
     # Run Kestra
     sudo docker-compose up -d
