@@ -2,7 +2,7 @@ import requests
 import os
 import csv
 from google.cloud import storage
-from datetime import datetime, UTC, timedelta
+from datetime import datetime, timezone, timedelta
 
 # Chicago Data Portal API URL (JSON format)
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
@@ -12,8 +12,8 @@ GCS_BUCKET_NAME = 'chi-traffic-json'  # Replace with your bucket name
 GCS_DEST_PATH = 'chicago_traffic_data.csv'  # Path where the file will be stored
 
 # Backfill configuration (You can override BACKFILL_DATE with an environment variable)
-BACKFILL_DATE = os.getenv("BACKFILL_DATE", "2025-03-25T14:30:00.000")
-start_date = BACKFILL_DATE or (datetime.now(UTC) - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
+BACKFILL_DATE = os.getenv("BACKFILL_DATE", "2025-03-25T15:30:00.000")
+start_date = BACKFILL_DATE or (datetime.now(timezone.UTC) - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
 
 # Temporary file path to store the CSV locally before uploading to GCS
 TEMP_CSV_FILE = "/tmp/chicago_traffic_data.csv"
