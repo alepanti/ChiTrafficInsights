@@ -1,35 +1,5 @@
-    #!/bin/bash
-    sudo apt update && sudo apt install -y docker.io docker-compose curl python3 python3-pip
-    python3 -m pip install --upgrade pip
-
-    # Set up dlt directory
-    mkdir -p /opt/dlt
-    cd /opt/dlt
-    # Install dependencies for dlt pipeline
-    pip install dlt[filesystem] requests requests os datetime google-cloud-storage
-
-    BUCKET_URL="gs://chi-traffic-csv"
-    PROJECT_ID="chicago-traffic-453615"
-    #PRIVATE_KEY="your-private-key"
-    #CLIENT_EMAIL="your-client-email"
-
-    # Create or update secrets.toml
-    cat <<EOT > ~/.dlt/secrets.toml
-    [destination.filesystem]
-    bucket_url = "$BUCKET_URL"
-
-    [destination.credentials]
-    project_id = "$PROJECT_ID"
-    #private_key = "$PRIVATE_KEY"
-    #client_email = "$CLIENT_EMAIL"
-    EOT>>
-
-    # Enable and start Docker
-    sudo systemctl start docker
-    sudo systemctl enable docker
-
-    # Download compose file for kestra
-    curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/DE-zoomcamp-workspace/refs/heads/main/docker-compose.yml
-
-    # Run Kestra using Docker Compose
-    sudo docker-compose up -d
+SOURCES__PIPEDRIVE__PIPEDRIVE_API_KEY
+DESTINATION__BIGQUERY__CREDENTIALS__PROJECT_ID
+DESTINATION__BIGQUERY__CREDENTIALS__PRIVATE_KEY
+DESTINATION__BIGQUERY__CREDENTIALS__CLIENT_EMAIL
+DESTINATION__BIGQUERY__LOCATION
