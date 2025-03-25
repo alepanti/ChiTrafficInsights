@@ -74,10 +74,6 @@ resource "google_compute_instance" "kestra_vm" {
     access_config {} # Enables external IP
   }
 
-  metadata = {
-    env_b64 = var.env_b64
-  }
-
   metadata_startup_script = <<-EOT
     #!/bin/bash
     sudo apt update && sudo apt install -y docker.io docker-compose curl
