@@ -3,11 +3,6 @@ import requests
 import os
 from datetime import datetime, UTC, timedelta
 
-#DEBUGGING
-print("PROJECT ID:", os.getenv("DESTINATION__CREDENTIALS__PROJECT_ID"))
-print("private key:", os.getenv("DESTINATION__CREDENTIALS__PRIVATE_KEY"))
-print("CLIENT_EMAIL:", os.getenv("DESTINATION__CREDENTIALS__CLIENT_EMAIL"))
-
 # Chicago Data Portal API
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
 
@@ -20,7 +15,7 @@ def get_api_url(since_time):
     return f"{API_URL}?$where=time>'{since_time}'"
 
 # Fetch data in batches of 1000
-@dlt.resource(name="chicago_traffic", write_disposition="append")
+@dlt.resource(name="chicago_traffic", write_disposition="replace")
 def fetch_traffic_data(pipeline):
 
     last_timestamp = BACKFILL_DATE or start_date
