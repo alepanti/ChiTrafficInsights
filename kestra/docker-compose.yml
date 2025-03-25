@@ -22,7 +22,7 @@ services:
 
   kestra:
     restart: always
-    image: kestra/kestra:latest-full
+    image: kestra/kestra:latest
     env_file:
       - .env
     pull_policy: always
