@@ -25,3 +25,9 @@ tasks:
     key: GCP_CLIENT_EMAIL
     kvType: STRING
     value: chi-pipeline@chicago-traffic-453615.iam.gserviceaccount.com
+  
+  - id: dbt_dataset
+    type: io.kestra.plugin.core.kv.Set
+    key: DBT_BIGQUERY_DATASET
+    kvType: STRING
+    value: traffic_data
