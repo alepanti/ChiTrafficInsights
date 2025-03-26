@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: staging
-    database: "{{ env_var('DBT_BIGQUERY_PROJECT') }}"
-    schema: "{{ env_var('DBT_BIGQUERY_DATASET') }}"
+    database: "{{ env_var('DBT_BIGQUERY_PROJECT'), chicago-traffic-453615 }}"
+    schema: "{{ env_var('DBT_BIGQUERY_DATASET'), traffic_data }}"
 
     tables:
       - name: raw_data
