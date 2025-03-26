@@ -1,9 +1,0 @@
-bigquery:
-  target: prod
-  outputs:
-    dev:
-      type: bigquery
-      method: oauth
-      project: "{{ env_var('GCP_PROJECT_ID') }}"
-      dataset: "{{ env_var('GCP_DATASET') }}"
-      threads: 4
