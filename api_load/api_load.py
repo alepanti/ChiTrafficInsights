@@ -7,15 +7,15 @@ from datetime import datetime, timezone, timedelta
 # Chicago Data Portal API URL (CSV format)
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
 
-GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME')
-GCS_DEST_PATH = os.getenv('CSV_FILE')
+GCS_BUCKET_NAME = 'chi-traffic-csv'
+GCS_DEST_PATH = 'raw_data.csv'
 
 # Backfill configuration
-BACKFILL_DATE = os.getenv("BACKFILL_DATE", None)
+BACKFILL_DATE = os.getenv("BACKFILL_DATE", "2025-01-01T00:00:00.000")
 start_date = BACKFILL_DATE or (datetime.now(timezone.UTC) - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
 
 # Temporary file path to store the CSV locally before uploading to GCS
-TEMP_CSV_FILE = "/tmp/chicago_traffic_data.csv"
+TEMP_CSV_FILE = "/tmp/raw_data.csv"
 
 def fetch_paginated_traffic_data(since_time):
     offset = 0

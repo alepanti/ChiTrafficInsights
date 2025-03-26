@@ -20,7 +20,7 @@ variable "bq_dataset_name" {
 
 variable "gcs_bucket_name" {
   description = "Google Cloud Storage bucket name"
-  default     = "chi-traffic-json"
+  default     = "chi-traffic-csv"
 }
 
 variable "gcs_storage_class" {

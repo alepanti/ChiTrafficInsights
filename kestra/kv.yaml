@@ -6,7 +6,7 @@ tasks:
     type: io.kestra.plugin.core.kv.Set
     key: GCS_URL
     kvType: STRING
-    value: gs://chi-traffic-json
+    value: gs://chi-traffic-csv
 
   - id: gcs_bucket_name
     type: io.kestra.plugin.core.kv.Set
@@ -14,12 +14,12 @@ tasks:
     kvType: STRING
     value: chi-traffic-json
 
-  - id: csv_file
+  - id: csv_file_path
     type: io.kestra.plugin.core.kv.Set
-    key: CSV_FILE
+    key: CSV_FILE_PATH
     kvType: STRING
     value: raw_traffic.csv
-    
+
   - id: gcp_dataset
     type: io.kestra.plugin.core.kv.Set
     key: GCP_DATASET

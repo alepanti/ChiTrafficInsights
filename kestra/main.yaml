@@ -41,3 +41,23 @@ tasks:
         - rm .dlt/secrets.toml
       commands:
         - python dlt_bq/load_bq.py
+      
+    - id: dbtBuild
+      type: io.kestra.plugin.dbt.cli.DbtCLI
+      env:
+        DBT_DATABASE: "{{kv('GCP_PROJECT_ID')}}"
+        DBT_SCHEMA: "{{kv('GCP_DATASET')}}"
+      namespaceFiles:
+        enabled: true
+      containerImage: ghcr.io/kestra-io/dbt-bigquery:latest
+      taskRunner:
+        type: io.kestra.plugin.scripts.runner.docker.Docker
+      inputFiles:
+        sa.json: "{{kv('GCP_CREDS')}}"
+      projectDir: ./dbt
+      commands:
+        - dbt deps --project-dir ./dbt
+        - dbt build --project-dir ./dbt
+      storeManifest:
+        key: manifest.json
+        namespace: "{{ flow.namespace }}"
