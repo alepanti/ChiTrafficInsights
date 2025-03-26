@@ -10,6 +10,6 @@ select * from {{ ref("stg_traffic_data") }}
 {% if is_incremental() %}
 
 where
-  date > (select max(date) from {{ this }})
+  record_id not in (select record_id from {{ this }})
 
 {% endif %}
