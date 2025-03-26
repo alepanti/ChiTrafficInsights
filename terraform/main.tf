@@ -90,9 +90,6 @@ resource "google_compute_instance" "kestra_vm" {
     sudo mkdir -p /home/kestra
     cd /home/kestra
 
-    sudo curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/env_b64 | base64 --decode > .env
-    sudo chmod 600 .env
-
     sudo curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/file_b64 | base64 --decode > creds.json
     sudo chmod 644 creds.json
 
