@@ -1,0 +1,72 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('DBT_BIGQUERY_PROJECT') }}"
+    schema: "{{ env_var('DBT_BIGQUERY_DATASET') }}"
+
+    tables:
+      - name: raw_data
+
+models:
+    - name: stg_traffic_data
+
+      columns:
+        - name: record_id
+          data_type: STRING
+
+        - name: region_id
+          data_type: INT64
+
+        - name: date
+          data_type: TIMESTAMP
+
+        - name: speed
+          data_type: NUMERIC
+
+        - name: bus_count
+          data_type: INT64
+
+        - name: num_reads
+          data_type: INT64
+
+        - name: region
+          data_type: STRING
+        
+        - name: region_description
+          data_type: STRING
+
+        - name: west
+          data_type: NUMERIC
+
+        - name: east
+          data_type: NUMERIC
+
+        - name: south
+          data_type: NUMERIC
+
+        - name: north
+          data_type: NUMERIC
+
+        - name: nw_location
+          data_type: GEOGRAPHY
+
+        - name: se_location
+          data_type: GEOGRAPHY
+
+        - name: hour
+          data_type: INT64
+
+        - name: day_of_week
+          data_type: INT64
+
+        - name: weekday
+          data_type: STRING
+
+        - name: month
+          data_type: INT64
+        
+        - name: year
+          data_type: INT64
+
+        
