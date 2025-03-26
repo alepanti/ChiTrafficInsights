@@ -37,7 +37,6 @@ tasks:
       warningOnStdErr: false
       beforeCommands:
         - pip install -r dlt_bq/requirements.txt
-        - export GOOGLE_APPLICATION_CREDENTIALS='/.gcp/credentials.json'
         - dlt --non-interactive init filesystem bigquery
         - rm .dlt/secrets.toml
       commands:
