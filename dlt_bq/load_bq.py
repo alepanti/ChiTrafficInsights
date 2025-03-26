@@ -6,7 +6,6 @@ from dlt.sources.filesystem import filesystem, read_csv
 def csv_source():
     files = filesystem()
     reader = (files | read_csv())
-
     
     row_count = 0
     for row in reader:

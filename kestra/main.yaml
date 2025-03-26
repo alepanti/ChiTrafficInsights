@@ -10,18 +10,31 @@ tasks:
       url: https://github.com/alepanti/ChiTrafficInsights
       branch: main
 
-    - id: pythonScript
+    - id: getAPIdata
       type: io.kestra.plugin.scripts.python.Commands
-      env:
-        DESTINATION__FILESYSTEM__BUCKET_URL: "{{ kv('GCS_URL')}}"
-        DESTINATION__CREDENTIALS__PROJECT_ID: "{{ kv('GCP_PROJECT_ID') }}"
-        DESTINATION__CREDENTIALS__PRIVATE_KEY: " {{ secret('PRIVATE_KEY') }}"
-        DESTINATION__CREDENTIALS__CLIENT_EMAIL: "{{ kv('GCP_CLIENT_EMAIL') }}"
+      taskRunner:
+        type: io.kestra.plugin.core.runner.Process
       warningOnStdErr: false
       containerImage: python:3.11
       beforeCommands:
-        - pip install -r dlt/requirements.txt
-        - dlt --non-interactive init chitraffic_api filesystem
+        - pip install -r requirements.txt
+        - export GOOGLE_APPLICATION_CREDENTIALS='/.gcp/credentials.json'
+      commands:
+        - python load_api.py
+    
+    - id: loadBQ
+      type: io.kestra.plugin.scripts.python.Commands
+      taskRunner:
+        type: io.kestra.plugin.core.runner.Process
+      env:
+        SOURCES__FILESYSTEM__BUCKET_URL: "{{ kv('GCS_URL')}}"
+        SOURCES__FILESYSTEM__FILE_GLOB: "*.csv"
+      warningOnStdErr: false
+      containerImage: python:3.11
+      beforeCommands:
+        - pip install -r dlt_bq/requirements.txt
+        - export GOOGLE_APPLICATION_CREDENTIALS='/.gcp/credentials.json'
+        - dlt --non-interactive init filesystem bigquery
         - rm .dlt/secrets.toml
       commands:
-        - python dlt/chit_pipeline.py
+        - python dlt_bq/load_bq.py

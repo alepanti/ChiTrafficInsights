@@ -12,7 +12,7 @@ GCS_BUCKET_NAME = 'chi-traffic-json'  # Replace with your bucket name
 GCS_DEST_PATH = 'chicago_traffic_data.csv'  # Path where the file will be stored
 
 # Backfill configuration (You can override BACKFILL_DATE with an environment variable)
-BACKFILL_DATE = os.getenv("BACKFILL_DATE", "2025-03-25T15:30:00.000")
+BACKFILL_DATE = os.getenv("BACKFILL_DATE", None)
 start_date = BACKFILL_DATE or (datetime.now(timezone.UTC) - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
 
 # Temporary file path to store the CSV locally before uploading to GCS
