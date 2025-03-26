@@ -75,7 +75,6 @@ resource "google_compute_instance" "kestra_vm" {
   }
 
   metadata = {
-    env_b64 = var.env_b64
     file_b64    = file("/home/realadmin/ChiTrafficInsights/terraform/.gcp/encoded_creds.txt")
   }
 
