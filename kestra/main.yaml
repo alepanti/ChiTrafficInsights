@@ -5,7 +5,7 @@ inputs:
   - id: date
     type: DATETIME
     defaults: "2025-03-25T20:19:00Z"
-    displayName: "Select start date for load"
+    displayName: "Backfill date for load"
 
 tasks:
   - id: workingDirectory
@@ -21,13 +21,11 @@ tasks:
       taskRunner:
         type: io.kestra.plugin.core.runner.Process
       warningOnStdErr: false
-      containerImage: python:3.11
       beforeCommands:
         - pip install -r api_load/requirements.txt
-        - export GOOGLE_APPLICATION_CREDENTIALS='/.gcp/credentials.json'
         - export BACKFILL_DATE="{{ inputs.date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
       commands:
-        - python api_load/load_api.py
+        - python api_load/api_load.py
     
     - id: loadBQ
       type: io.kestra.plugin.scripts.python.Commands
@@ -37,7 +35,6 @@ tasks:
         SOURCES__FILESYSTEM__BUCKET_URL: "{{ kv('GCS_URL')}}"
         SOURCES__FILESYSTEM__FILE_GLOB: "*.csv"
       warningOnStdErr: false
-      containerImage: python:3.11
       beforeCommands:
         - pip install -r dlt_bq/requirements.txt
         - export GOOGLE_APPLICATION_CREDENTIALS='/.gcp/credentials.json'
