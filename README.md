@@ -27,7 +27,7 @@ insert screenshot
 #### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
 
-%% Pipeline Diagram
+```mermaid
 graph TD
     A[Chicago Traffic API] -->|Python Script| B[GCS Bucket<br><small>Raw CSV Files</small>]
     B -->|dlt Pipeline| C[BigQuery<br><small>Staging Tables</small>]
@@ -48,7 +48,7 @@ graph TD
     style D fill:#e74c3c,stroke:#c0392b
     style E fill:#f39c12,stroke:#e67e22
     style F fill:#1abc9c,stroke:#16a085
-
+```
 #### Tech Stack
 
 | Component              | Purpose                                                                 | Key Features Used                     |
