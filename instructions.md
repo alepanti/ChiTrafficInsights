@@ -36,7 +36,9 @@ Pipeline is set to run off this repository so it will run successfully regardles
     **kv.yaml**: Add the json of you service account credentials under gcp_creds and change values to match created resource names.  
     **main.yaml**: If you would like to run pipeline off your own repo, change the url under workingDirectory task:
         ![alt text](images/wd.png)
-3. Run kv.yaml
+        and change the project directory for dbt:
+        ![alt.text](images/pd.png)
+4. Run kv.yaml
 
 # Run pipeline!
 You can execute the main flow. It will default to loading the last 24 hours of data or you can enter a specific date rangee. The data goes back to March of 2018.
