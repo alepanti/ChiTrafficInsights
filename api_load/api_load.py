@@ -32,9 +32,9 @@ TEMP_CSV_FILE = "/tmp/raw_data.csv"
 def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None):
     
     if since_time:
-        url = f"https://data.cityofchicago.org/resource/kf7e-cur8.json?$where=time>'{since_time}'&$order=time DESC"
+        url = f"https://data.cityofchicago.org/resource/kf7e-cur8.json?$where=time>'{since_time}'"
     else:
-        url = f"https://data.cityofchicago.org/resource/kf7e-cur8.json?$where=time>'{start_time}' AND time<'{end_time}'&$order=time DESC"
+        url = f"https://data.cityofchicago.org/resource/kf7e-cur8.json?$where=time>'{start_time}' AND time<'{end_time}'"
 
     print(f"Fetching data from: {url}") 
 
