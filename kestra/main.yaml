@@ -50,8 +50,8 @@ tasks:
       warningOnStdErr: false
       beforeCommands:
         - pip install -r api_load/requirements.txt
-        - export START_DATE="{{ inputs.date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
-        - export END_DATE="{{ inputs.date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
+        - export START_DATE="{{ inputs.start_date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
+        - export END_DATE="{{ inputs.end_date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
       commands:
         - python api_load/api_load.py
     
