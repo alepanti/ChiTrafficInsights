@@ -14,7 +14,7 @@ A data pipeline that transforms csv Chicago traffic API data into actionable ins
 
 | Component              | Purpose                                                                 | Key Features Used                     |
 |------------------------|-------------------------------------------------------------------------|---------------------------------------|
-| **Google Compute Engine (GCE)** | Hosts pipeline execution environment                                  | - Docker container runtime            |
+| **Google Compute Engine (GCE)** | Hosts pipeline execution environment                                  | - Docker container runtime for kestra            |
 | **Kestra (Docker)**     | Workflow orchestration                                                 | - Scheduled job execution<br>- Dependency management |
 
 ---
