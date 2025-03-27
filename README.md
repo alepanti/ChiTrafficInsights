@@ -75,7 +75,7 @@ I used dbt to transform the data from the staging tables. I created additional f
 
 ### Deployment
 
-Follow instructions laid out [here](instructions.md)
+Follow instructions laid out [here](INSTRUCTIONS.md)
 
 ---
 
