@@ -4,6 +4,6 @@ bigquery:
     dev:
       type: bigquery
       method: oauth
-      project: "{{ env_var('DBT_DATASET') }}"
+      project: "{{ env_var('DBT_DATABASE') }}"
       dataset: "{{ env_var('DBT_SCHEMA') }}"
       threads: 4
