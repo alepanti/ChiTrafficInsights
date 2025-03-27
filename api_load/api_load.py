@@ -57,7 +57,7 @@ def upload_to_gcs(json_data):
     bucket = client.bucket(GCS_BUCKET_NAME)
     blob = bucket.blob(GCS_DEST_PATH)
     blob.upload_from_filename(TEMP_CSV_FILE)
-
+    print(f"row count: {rowCount}")
     print(f"File successfully uploaded to gs://{GCS_BUCKET_NAME}/{GCS_DEST_PATH}")
 
 def main():
