@@ -61,6 +61,8 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 
 ## BQ Tables
 
+I used dbt to transform the data from the staging tables. I created additional fact and dimension tables to help with analyzing regional and time-based traffic.
+
 | Table Name          | Partition/Cluster       | Description                          |
 |---------------------|-------------------------|--------------------------------------|
 | stg_traffic_raw     | none                    | Raw API data                         |
