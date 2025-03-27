@@ -27,7 +27,7 @@ insert screenshot
 #### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
 
-![alt text][images/diagram.png]
+![alt text](images/diagram.png)
 
 #### Tech Stack
 
