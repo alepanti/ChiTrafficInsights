@@ -8,14 +8,14 @@ If you've ever driven a car in Chicago you know how crazy traffic can be. To hel
 ### Dashboard
 insert screenshot
 
-#### 1. "When Should I Leave?"  
+#### "When Should I Leave?"  
 **Hourly speed trends show:**  
 - Best/worst times to drive through specific areas  
 
 **Daily speed trends show:**  
 - Best/worst days to drive through specific areas  
 
-#### 2. "Which Route is Faster?"  
+#### "Which Route is Faster?"  
 **Regional speed comparisons reveal:**  
 - Consistent bottlenecks
 - Possible hidden shortcuts
