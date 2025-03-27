@@ -18,7 +18,7 @@ central_tz = pytz.timezone("America/Chicago")
 backfill_start_utc = os.getenv("START_DATE") or None
 backfill_end_utc = os.getenv("END_DATE") or None
 
-since_date_utc = (datetime.now(timezone.utc) - timedelta(24))
+since_date_utc = (datetime.now(timezone.utc) - timedelta(days=1))
 
 #convert to central timezone
 if backfill_start_utc is not None:
