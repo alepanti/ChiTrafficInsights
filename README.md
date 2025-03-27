@@ -27,6 +27,8 @@ insert screenshot
 #### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
 
+insert flow diagram
+
 #### Tech Stack
 
 | Component              | Purpose                                                                 | Key Features Used                     |
@@ -41,19 +43,3 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 
 ---
 
-### Dashboard
-insert screenshot
-
-#### 1. "When Should I Leave?"  
-**Hourly speed trends show:**  
-- Best/worst times to drive through specific areas  
-
-**Daily speed trends show:**  
-- Best/worst days to drive through specific areas  
-
-#### 2. "Which Route is Faster?"  
-**Regional speed comparisons reveal:**  
-- Consistent bottlenecks
-- Possible hidden shortcuts
-
----
