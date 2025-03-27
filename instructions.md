@@ -36,7 +36,7 @@ Pipeline is set to run off this repository so it will run successfully regardles
     **kv.yaml**: Add the json of you service account credentials under gcp_creds and change values to match created resource names.  
     **main.yaml**: If you would like to run pipeline off your own repo, change the url under workingDirectory task:
         ![alt text](images/wd.png)  
-        and change the projectDir for dbt to match where you have dbt:
+        and change the projectDir for dbt to match where you have dbt:  
         ![alt.text](images/pd.png)
 4. Run kv.yaml
 
