@@ -78,7 +78,7 @@ def upload_to_gcs(json_data):
     print(f"File successfully uploaded to gs://{GCS_BUCKET_NAME}/{GCS_DEST_PATH}")
 
 def main():
-    if backfill_start is None:
+    if backfill_start_utc is None:
         json_data = fetch_paginated_traffic_data(since_time=since_date)
         print(f"Fetching data since {since_date}")
     else:
