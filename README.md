@@ -20,6 +20,7 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 | **BigQuery**     | Data Warehouse                                              | - Tables/views for analytics  |
 | **dlt**     | ETL                                             | - Extract data from GCS and load it into BigQuery  |
 | **dbt**     | Transformations                                             | - Create fact/dimension tables for analytics  |
+| **terraform**     | IaC Deployments                                             | - Ease redeployment of required cloud resources  |
 
 ---
 
