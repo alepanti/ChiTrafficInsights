@@ -5,8 +5,7 @@ If you've ever driven a car in Chicago you know how crazy traffic can be. To hel
 
 ---
 
-### Dashboard
-[Link to dashboard](https://lookerstudio.google.com/reporting/c6637050-b11f-45ce-b5f3-87fe0f37bda5)
+### [Dashboard](https://lookerstudio.google.com/reporting/c6637050-b11f-45ce-b5f3-87fe0f37bda5)
 
 ![alt text](images/dashboard.png)
 
