@@ -55,7 +55,7 @@ def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None
         all_json_data.extend(data)
 
         offset += limit
-        time.sleep(10)
+        time.sleep(3)
     return all_json_data
 
 # Function to convert JSON data to CSV and upload it to GCS
