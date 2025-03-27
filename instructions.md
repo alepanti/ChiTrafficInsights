@@ -38,4 +38,4 @@ Pipeline is set to run off this repository so it will run successfully regardles
 3. Run kv.yaml
 
 # Run pipeline!
-You can execute the main flow. It will default to loading the last 24 hours of data. You can enter backfill dates. 
+You can execute the main flow. It will default to loading the last 24 hours of data or you can enter a specific date rangee. The data goes back to March of 2018.
