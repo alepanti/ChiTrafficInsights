@@ -28,7 +28,7 @@ If you've ever driven a car in Chicago you know how crazy traffic can be. To hel
 ### Traffic Analytics Pipeline Architecture
 
 #### Overview
-A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
+A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters. It is scheduled to run daily with backfill options available.
 
 ![alt text](images/diagram.png)
 
