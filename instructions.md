@@ -35,8 +35,8 @@ Pipeline is set to run off this repository so it will run successfully regardles
 2. Create the flows outlined [here](kestra)  
     **kv.yaml**: Add the json of you service account credentials under gcp_creds and change values to match created resource names.  
     **main.yaml**: If you would like to run pipeline off your own repo, change the url under workingDirectory task:
-        ![alt text](images/wd.png)
-        and change the project directory for dbt:
+        ![alt text](images/wd.png)  
+        and change the projectDir for dbt to match where you have dbt:
         ![alt.text](images/pd.png)
 4. Run kv.yaml
 
