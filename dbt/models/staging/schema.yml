@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: staging
-    database: "{{ env_var('DBT_BIGQUERY_PROJECT') }}"
-    schema: "{{ env_var('DBT_BIGQUERY_DATASET') }}"
+    database: "{{ env_var('DBT_DATABASE') }}"
+    schema: "{{ env_var('DBT_SCHEMA') }}"
 
     tables:
       - name: raw_data
