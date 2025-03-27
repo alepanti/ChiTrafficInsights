@@ -43,3 +43,13 @@ tasks:
     key: DBT_RAW_DATASET
     kvType: STRING
     value: traffic_data
+
+  - id: gcp_creds
+    type: io.kestra.plugin.core.kv.Set
+    key: GCP_CREDS
+    kvType: JSON
+    value: |
+      { MANUALLY INSERT SERVICE ACCOUNT KEY HERE
+        "type": "service_account",
+        "project_id": "...",
+      }
