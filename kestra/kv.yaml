@@ -18,7 +18,7 @@ tasks:
     type: io.kestra.plugin.core.kv.Set
     key: CSV_FILE_PATH
     kvType: STRING
-    value: raw_traffic.csv
+    value: raw_data.csv
 
   - id: gcp_dataset
     type: io.kestra.plugin.core.kv.Set
@@ -38,8 +38,8 @@ tasks:
     kvType: STRING
     value: chi-pipeline@chicago-traffic-453615.iam.gserviceaccount.com
   
-  - id: dbt_dataset
+  - id: dbt_raw_dataset
     type: io.kestra.plugin.core.kv.Set
-    key: DBT_BIGQUERY_DATASET
+    key: DBT_RAW_DATASET
     kvType: STRING
     value: traffic_data

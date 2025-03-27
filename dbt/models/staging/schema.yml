@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: staging
     database: "{{ env_var('DBT_DATABASE') }}"
-    schema: "{{ env_var('DBT_SCHEMA') }}"
+    schema: "{{ env_var('DBT_RAW_DATASET') }}"
 
     tables:
       - name: raw_data
