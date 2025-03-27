@@ -37,3 +37,8 @@ variable "svc_account" {
   description = "Service account ID"
   default     = "chi-pipeline"
 }
+
+variable "creds" {
+    description = "Path to encoded creds file"
+    default = "/path/to/encoded_creds.txt"
+}

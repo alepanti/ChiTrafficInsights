@@ -75,7 +75,7 @@ resource "google_compute_instance" "kestra_vm" {
   }
 
   metadata = {
-    file_b64    = file("/home/realadmin/ChiTrafficInsights/terraform/.gcp/encoded_creds.txt") # Path to encoded creds file
+    file_b64    = file(var.creds)
   }
 
   metadata_startup_script = <<-EOT

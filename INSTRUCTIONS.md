@@ -1,14 +1,26 @@
+# Requirements
+    - GCP account
+    - GCLOUD CLI
+
 # Clone Repo (Optional)
 Pipeline is set to run off this repository so it will run successfully regardless. To make your own changes, you must create/clone this repo.
 
 # Set up Google Cloud Project
 1. Create a Google Cloud Project
-2. Enable Compute Engine API
+2. Enable Compute Engine API & Cloud Resource Manager API
 3. Create a Service Account 
     Don't worry about roles, terraform will cover that.
 4. Generate JSON key for Service Account. 
     Save key locally.
-5. Create encoded_creds.txt file.
+5. Set gcloud cli project
+    ```
+    gcloud config set project PROJECT_ID
+    ```
+5. Run the following command to set credentials.
+    ```
+    gcloud auth login
+    ```
+6. Create encoded_creds.txt file.
     Run the following command (linux) to encode your credentials:
     ```
     base64 /path/to/credentials.json > encoded_creds.txt
@@ -18,9 +30,7 @@ Pipeline is set to run off this repository so it will run successfully regardles
 # Deploy Resources with Terraform
 1. Terraform client installation: https://www.terraform.io/downloads
 2. Create/copy terraform files outlined [here](terraform)  
-    **variables.tf**: Update with your project id and intended resource names.  
-    **main.tf**: Update metadata with the path to your encoded_creds.txt file we created earlier.
-    ![alt text](images/metadata.png)
+    **variables.tf**: Update with your project id, path to encoded creds, and intended resource names.  
 3. Deploy resources with the following commands:
     ```
     terraform init
