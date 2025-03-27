@@ -44,7 +44,7 @@ def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None
     all_json_data = []
 
     while True:
-        
+        print(f"fetching with offset {offset}")
         response = requests.get(url)
         response.raise_for_status()
 
