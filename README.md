@@ -13,7 +13,7 @@ This project transforms raw traffic data from the Chicago Data Portal into clear
 Discover that rush hour starts earlier than you think - the Loop slows down by 3:30 PM, not 5 PM. See how Saturday midday traffic flows 25% faster than Friday afternoons.  
 
 **Route Comparisons**  
-Compare parallel corridors to learn that Halsted Avenue moves faster than Canal Street after 7 PM, saving drivers an average of 12 minutes.  
+Compare traffic in regions to find the best route through the city.
 
 **Event Impacts**  
 View data for specific date by hour to see how events have affect traffic in the past.
