@@ -25,7 +25,6 @@ if backfill_start_utc is not None:
     backfill_end = datetime.strptime(backfill_end_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
 else:
     since_date = since_date_utc.astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
-print(f"{backfill_start}, {backfill_end}, {since_date}")
 
 # Temporary file path to store the CSV locally before uploading to GCS
 TEMP_CSV_FILE = "/tmp/raw_data.csv"
