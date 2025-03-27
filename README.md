@@ -40,14 +40,14 @@ View data for specific date by hour to see how events have affect traffic in the
 
 ---
 
-### Traffic Analytics Pipeline Architecture
+## Traffic Analytics Pipeline Architecture
 
-#### Overview
+### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters. It is scheduled to run daily with backfill options available.
 
 ![alt text](images/diagram.png)
 
-#### Tech Stack
+### Tech Stack
 
 | Component              | Purpose                                                                 | Key Features Used                     |
 |------------------------|-------------------------------------------------------------------------|---------------------------------------|
@@ -58,6 +58,10 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 | **dlt**     | ETL                                             | - Extract data from GCS and load it into BigQuery  |
 | **dbt**     | Transformations                                             | - Create fact/dimension tables for analytics  |
 | **terraform**     | IaC Deployments                                             | - Ease redeployment of required cloud resources  |
+
+### Deployment
+
+Follow instructions laid out [here](instructions.txt)
 
 ---
 
