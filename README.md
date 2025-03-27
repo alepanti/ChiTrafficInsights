@@ -64,8 +64,7 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 | Table Name          | Partition/Cluster       | Description                          |
 |---------------------|-------------------------|--------------------------------------|
 | stg_traffic_raw     | none                    | Raw API data                         |
-| fct_traffic                 | Parition: date
- Cluster: region_id  | Incrementally loaded. Cleaned data, partitions/cluster to help optimize queries for date and regions.  |
+| fct_traffic                 | Parition: date/Cluster: region_id  | Incrementally loaded. Cleaned data, partitions/cluster to help optimize queries for date and regions.  |
 | fct_avg_speed_by_region_hour            | Parition: region_id | Average speeds per hour for each region, partitions help for querying regional data.|
 | dim_region                 | none                    | Region descriptions.                                  |
 | dim_date                 | none                    | Breakdown of dates by hour,month,year, and day.                                 |
