@@ -27,7 +27,7 @@ insert screenshot
 #### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
 
-![alt text][(https://github.com/alepanti/ChiTrafficInsights/blob/e081d7af774f64f1896f07ad129602c936b5a265/images/diagram.png)]
+![alt text][images/diagram.png]
 
 #### Tech Stack
 
