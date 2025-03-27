@@ -8,7 +8,7 @@ If you've ever driven a car in Chicago you know how crazy traffic can be. To hel
 ### Traffic Analytics Pipeline Architecture
 
 #### Overview
-A data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
+A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
 
 #### Tech Stack
 
@@ -16,6 +16,10 @@ A data pipeline that transforms csv Chicago traffic API data into actionable ins
 |------------------------|-------------------------------------------------------------------------|---------------------------------------|
 | **Google Compute Engine (GCE)** | Hosts pipeline execution environment                                  | - Docker container runtime for kestra            |
 | **Kestra (Docker)**     | Workflow orchestration                                                 | - Scheduled job execution<br>- Dependency management |
+| **Google Cloud Storage**     | Datalake                                               | - Destination for extracted csv files |
+| **BigQuery**     | Data Warehouse                                              | - Tables/views for analytics  |
+| **dlt**     | ETL                                             | - Extract data from GCS and load it into BigQuery  |
+| **dbt**     | Transformations                                             | - Create fact/dimension tables for analytics  |
 
 ---
 
