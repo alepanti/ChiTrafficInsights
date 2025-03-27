@@ -6,7 +6,8 @@ If you've ever driven a car in Chicago you know how crazy traffic can be. To hel
 ---
 
 ### Dashboard
-insert screenshot
+
+![alt text](images/dashboard.png)
 
 #### "When Should I Leave?"  
 **Hourly speed trends show:**  
