@@ -20,8 +20,8 @@ backfill_end_utc = os.getenv("END_DATE") or None
 since_date_utc = (datetime.now(timezone.utc) - timedelta(24))
 
 #convert to central timezone
-backfill_start = datetime.strptime(backfill_start_utc).astimezone(central_tz)
-backfill_end = datetime.strptime(backfill_end_utc).astimezone(central_tz)
+backfill_start = datetime.strptime(backfill_start_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz)
+backfill_end = datetime.strptime(backfill_end_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz)
 since_date = since_date_utc.astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
 print(f"{backfill_start}, {backfill_end}, {since_date}")
 
