@@ -5,5 +5,5 @@ bigquery:
       type: bigquery
       method: oauth
       project: "{{ env_var('GCP_PROJECT_ID') }}"
-      dataset: "{{ env_var('GCP_DATASET') }}"
+      dataset: "{{ env_var('DBT_SCHEMA') }}"
       threads: 4
