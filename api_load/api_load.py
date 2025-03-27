@@ -7,7 +7,7 @@ from datetime import datetime, timezone, timedelta
 # Chicago Data Portal API URL (CSV format)
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
 
-GCS_BUCKET_NAME = os.getenv('GCP_DATASET_NAME')
+GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME')
 GCS_DEST_PATH = os.getenv('CSV_FILE_PATH')
 
 # Backfill configuration
