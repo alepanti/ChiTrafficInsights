@@ -27,7 +27,27 @@ insert screenshot
 #### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters.
 
-insert flow diagram
+%% Pipeline Diagram
+graph TD
+    A[Chicago Traffic API] -->|Python Script| B[GCS Bucket<br><small>Raw CSV Files</small>]
+    B -->|dlt Pipeline| C[BigQuery<br><small>Staging Tables</small>]
+    C -->|dbt Models| D[BigQuery<br><small>Analytics Tables</small>]
+    D --> E[Looker Studio<br><small>Dashboards</small>]
+    
+    subgraph GCE VM
+        F[Kestra Orchestrator]
+        F -->|Triggers| A
+        F -->|Manages| B
+        F -->|Controls| C
+        F -->|Schedules| D
+    end
+
+    style A fill:#2ecc71,stroke:#27ae60
+    style B fill:#3498db,stroke:#2980b9
+    style C fill:#9b59b6,stroke:#8e44ad
+    style D fill:#e74c3c,stroke:#c0392b
+    style E fill:#f39c12,stroke:#e67e22
+    style F fill:#1abc9c,stroke:#16a085
 
 #### Tech Stack
 
