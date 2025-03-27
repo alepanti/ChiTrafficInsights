@@ -2,48 +2,56 @@ id: kv
 namespace: chi-traffic
 
 tasks:
+    # URL for GCS bucket
   - id: gcs_url
     type: io.kestra.plugin.core.kv.Set
     key: GCS_URL
     kvType: STRING
     value: gs://chi-traffic-csv
 
+    # Plain name of GCS bucket
   - id: gcs_bucket_name
     type: io.kestra.plugin.core.kv.Set
     key: GCS_BUCKET_NAME
     kvType: STRING
     value: chi-traffic-csv
 
+    # File path/name to load csv data in bucket
   - id: csv_file_path
     type: io.kestra.plugin.core.kv.Set
     key: CSV_FILE_PATH
     kvType: STRING
     value: raw_data.csv
 
+    # BigQuery dataset name
   - id: gcp_dataset
     type: io.kestra.plugin.core.kv.Set
     key: GCP_DATASET
     kvType: STRING
     value: chi_traffic
-  
+
+    # GCP Project ID
   - id: gcp_project_id
     type: io.kestra.plugin.core.kv.Set
     key: GCP_PROJECT_ID
     kvType: STRING
     value: chicago-traffic-453615
   
+    # Service account email
   - id: gcp_client_email
     type: io.kestra.plugin.core.kv.Set
     key: GCP_CLIENT_EMAIL
     kvType: STRING
     value: chi-pipeline@chicago-traffic-453615.iam.gserviceaccount.com
   
+    # Dataset location for raw data
   - id: dbt_raw_dataset
     type: io.kestra.plugin.core.kv.Set
     key: DBT_RAW_DATASET
     kvType: STRING
     value: traffic_data
 
+    # GCP Credentials JSON
   - id: gcp_creds
     type: io.kestra.plugin.core.kv.Set
     key: GCP_CREDS
