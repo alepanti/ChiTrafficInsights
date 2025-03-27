@@ -59,6 +59,15 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 | **dbt**     | Transformations                                             | - Create fact/dimension tables for analytics  |
 | **terraform**     | IaC Deployments                                             | - Ease redeployment of required cloud resources  |
 
+## BQ Tables
+
+| Table Name          | Partition/Cluster       | Description                          |
+|---------------------|-------------------------|--------------------------------------|
+| stg_traffic_raw     | date                    | Raw API data                         |
+| ...                 | ...                     | ...                                  |
+
+---
+
 ### Deployment
 
 Follow instructions laid out [here](instructions.txt)
