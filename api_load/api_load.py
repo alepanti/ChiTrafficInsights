@@ -32,18 +32,19 @@ TEMP_CSV_FILE = "/tmp/raw_data.csv"
 
 def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None):
     
-    if since_time:
-        url = f"https://data.cityofchicago.org/resource/kf7e-cur8.json?$where=time>'{since_time}'"
-    else:
-        url = f"https://data.cityofchicago.org/resource/kf7e-cur8.json?$where=time>'{start_time}' AND time<'{end_time}'"
 
-    print(f"Fetching data from: {url}") 
 
     offset = 0
     limit = 1000 
     all_json_data = []
 
     while True:
+        if backfill_start_utc is None:
+            url = f"{API_URL}?$where=time>'{since_date}'&$limit={limit}&$offset={offset}"
+        else:
+            url = f"{API_URL}?$where=time>'{backfill_start}' AND time<'{backfill_end}'&$limit={limit}&$offset={offset}"
+
+        print(f"Fetching data from: {url}") 
         print(f"fetching with offset {offset}")
         response = requests.get(url)
         response.raise_for_status()
