@@ -6,8 +6,7 @@ from google.cloud import storage
 from datetime import datetime, timezone, timedelta
 import time
 
-# Chicago Data Portal API URL
-API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
+API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.csv"
 
 GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME')
 GCS_DEST_PATH = os.getenv('CSV_FILE_PATH')
@@ -20,23 +19,29 @@ backfill_end_utc = os.getenv("END_DATE") or None
 
 since_date_utc = (datetime.now(timezone.utc) - timedelta(days=1))
 
-#convert to central timezone
+# Convert to central timezone
 if backfill_start_utc is not None:
     backfill_start = datetime.strptime(backfill_start_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
     backfill_end = datetime.strptime(backfill_end_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
 else:
     since_date = since_date_utc.astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
 
-# Temporary file path to store the CSV locally before uploading to GCS
 TEMP_CSV_FILE = "/tmp/raw_data.csv"
 
-def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None):
-    
+def get_headers():
+    """Fetch and return the CSV headers from the API"""
+    header_url = f"{API_URL}?$limit=1"
+    print(f"Fetching headers from: {header_url}")
+    response = requests.get(header_url, stream=True)
+    response.raise_for_status()
+    header_reader = csv.reader(response.iter_lines(decode_unicode=True))
+    return next(header_reader)
 
-
+def fetch_paginated_traffic_data(headers):
+    """Fetch data rows"""
     offset = 0
-    limit = 1000 
-    all_json_data = []
+    limit = 1000
+    all_csv_rows = []
 
     while True:
         if backfill_start_utc is None:
@@ -44,53 +49,64 @@ def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None
         else:
             url = f"{API_URL}?$where=time>'{backfill_start}' AND time<'{backfill_end}'&$limit={limit}&$offset={offset}"
 
-        print(f"Fetching data from: {url}") 
-        print(f"fetching with offset {offset}")
-        response = requests.get(url)
+        print(f"Fetching data with offset {offset}")
+        
+        response = requests.get(url, stream=True)
         response.raise_for_status()
 
-        data = response.json()
-        if not data:
+        lines = response.iter_lines(decode_unicode=True)
+        reader = csv.reader(lines)
+        next(reader)
+        batch_rows = list(reader)
+        
+        if not batch_rows:
             break
 
-        all_json_data.extend(data)
-
-        offset += limit
+        all_csv_rows.extend(batch_rows)
+        offset += len(batch_rows)
         time.sleep(3)
-    return all_json_data
+    
+    return all_csv_rows
 
-# Function to convert JSON data to CSV and upload it to GCS
-def upload_to_gcs(json_data):
-
-    fieldnames = json_data[0].keys() if json_data else []
-    rowCount = 0
+def upload_to_gcs(headers, csv_rows):
+    """Upload CSV to GCS"""
+    row_count = 0
     with open(TEMP_CSV_FILE, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader() 
-        for row in json_data:
-            rowCount+=1
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        for row in csv_rows:
+            row_count += 1
             writer.writerow(row)
 
-    # Upload the file to Google Cloud Storage
+    # Upload to GCS
     client = storage.Client()
     bucket = client.bucket(GCS_BUCKET_NAME)
     blob = bucket.blob(GCS_DEST_PATH)
     blob.upload_from_filename(TEMP_CSV_FILE)
-    print(f"row count: {rowCount}")
+    print(f"Row count: {row_count}")
     print(f"File successfully uploaded to gs://{GCS_BUCKET_NAME}/{GCS_DEST_PATH}")
 
 def main():
-    if backfill_start_utc is None:
-        json_data = fetch_paginated_traffic_data(since_time=since_date)
-        print(f"Fetching data since {since_date}")
-    else:
-        json_data = fetch_paginated_traffic_data(start_time=backfill_start, end_time=backfill_end)
-        print(f"Fetching data between {backfill_start} and {backfill_end}")
+    try:
+        # First get headers
+        headers = get_headers()
+        
+        if backfill_start_utc is None:
+            print(f"Fetching data since {since_date}")
+        else:
+            print(f"Fetching data between {backfill_start} and {backfill_end}")
 
-    if json_data:
-        upload_to_gcs(json_data)
-    else:
-        print("No data retrieved. Nothing to upload.")
+        # Then fetch data
+        csv_data = fetch_paginated_traffic_data(headers)
+        
+        if csv_data:
+            upload_to_gcs(headers, csv_data)
+        else:
+            print("No data retrieved. Nothing to upload.")
+            
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
+        raise
 
 if __name__ == "__main__":
     main()
