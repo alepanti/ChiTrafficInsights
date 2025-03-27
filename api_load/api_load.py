@@ -14,6 +14,7 @@ GCS_DEST_PATH = os.getenv('CSV_FILE_PATH')
 backfill_start = os.getenv("START_DATE") or None
 backfill_end = os.getenv("END_DATE") or None
 since_date = (datetime.now(timezone.UTC) - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
+print(f"{backfill_start}, {backfill_end}, {since_date}")
 
 # Temporary file path to store the CSV locally before uploading to GCS
 TEMP_CSV_FILE = "/tmp/raw_data.csv"
