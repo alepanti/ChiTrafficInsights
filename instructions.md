@@ -16,8 +16,8 @@ Pipeline is set to run off this repository so it will run successfully regardles
 
 # Deploy Resources with Terraform
 1. Terraform client installation: https://www.terraform.io/downloads
-2. Create/copy terraform files outlined [here](terraform)
-    variables.tf: Update with your project id and intended resource names.
+2. Create/copy terraform files outlined [here](terraform)  
+    variables.tf: Update with your project id and intended resource names.  
     main.tf: Update metadata with the path to your encoded_creds.txt file we created earlier.
     ![alt text](images/metadata.png)
 3. Deploy resources with the following commands:
@@ -31,7 +31,7 @@ Pipeline is set to run off this repository so it will run successfully regardles
 
 # Create Kestra flows
 1. Access Kestra by navigating to the public API of your VM on 8080, e.g. http://55.555.55.55:8080
-2. Create the flows outlined [here](kestra)
-    kv.yaml: Add the json of you service account credentials under gcp_creds.
+2. Create the flows outlined [here](kestra)  
+    kv.yaml: Add the json of you service account credentials under gcp_creds.  
     main.yaml: If you would like to run pipeline off your own repo, change the url under workingDirectory task:
         ![alt text](images/wd.png)
