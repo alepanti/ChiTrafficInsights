@@ -37,9 +37,3 @@ variable "svc_account" {
   description = "Service account ID"
   default     = "chi-pipeline"
 }
-
-variable "env_b64" {
-  description = "Base64 encoded environment variables"
-  type        = string
-  sensitive   = true
-}

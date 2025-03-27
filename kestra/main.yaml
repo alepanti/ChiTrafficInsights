@@ -22,13 +22,20 @@ tasks:
       - echo "Running input validation..."
     commands:
       - > 
-        python -c "import os; import sys;
+        python -c "import os; import sys; from datetime import datetime;
         start_date = os.getenv('START_DATE');
         end_date = os.getenv('END_DATE');
 
-        if (start_date and not end_date) or (end_date and not start_date):
+        if (start_date and not end_date) or (end_date and not start_date) :
             print('ERROR: Both start_date and end_date must be provided together.');
             sys.exit(1);
+        elif start_date and end_date:
+          start_date = datetime.strptime(start_date, '%Y-%m-%dT%H:%M:%S.000');
+          end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.000');
+          
+          if start_date >= end_date:
+              print('ERROR: Start date must be before end date.');
+              sys.exit(1);
 
         print('Validation passed: Inputs are either both provided or both empty.');"
 

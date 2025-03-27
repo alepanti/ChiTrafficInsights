@@ -4,6 +4,7 @@ import csv
 import pytz
 from google.cloud import storage
 from datetime import datetime, timezone, timedelta
+import time
 
 # Chicago Data Portal API URL
 API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
@@ -54,7 +55,7 @@ def fetch_paginated_traffic_data(since_time=None, start_time=None, end_time=None
         all_json_data.extend(data)
 
         offset += limit
-
+        time.sleep(10)
     return all_json_data
 
 # Function to convert JSON data to CSV and upload it to GCS

@@ -57,7 +57,7 @@ resource "google_compute_firewall" "allow-https" {
 # Create Kestra VM
 resource "google_compute_instance" "kestra_vm" {
   name         = "kestra-server"
-  machine_type = "e2-medium"
+  machine_type = "n2-standard-4"
   zone         = var.zone
 
   boot_disk {
@@ -75,7 +75,7 @@ resource "google_compute_instance" "kestra_vm" {
   }
 
   metadata = {
-    file_b64    = file("/home/realadmin/ChiTrafficInsights/terraform/.gcp/encoded_creds.txt")
+    file_b64    = file("/home/realadmin/ChiTrafficInsights/terraform/.gcp/encoded_creds.txt") # Path to encoded creds file
   }
 
   metadata_startup_script = <<-EOT
