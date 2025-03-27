@@ -44,7 +44,7 @@ Pipeline is set to run off this repository so it will run successfully regardles
 1. Access Kestra by navigating to the public API of your VM on 8080, e.g. http://55.555.55.55:8080
 2. Create the flows outlined [here](kestra)  
     **kv.yaml**: Add the json of you service account credentials under gcp_creds and change values to match created resource names.  
-    **main.yaml**: If you would like to run pipeline off your own repo, change the url under workingDirectory task:
+    **main.yaml**: If you would like to run pipeline off your own repo, change the url under workingDirectory task:  
         ![alt text](images/wd.png)  
         and change the projectDir for dbt to match where you have dbt:  
         ![alt.text](images/pd.png)
