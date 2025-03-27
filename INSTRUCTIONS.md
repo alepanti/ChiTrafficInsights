@@ -29,7 +29,7 @@ Pipeline is set to run off this repository so it will run successfully regardles
 
 # Deploy Resources with Terraform
 1. Terraform client installation: https://www.terraform.io/downloads
-2. Create/copy terraform files outlined [here](terraform)  
+2. Create/copy tf files outlined [here](terraform)  
     **variables.tf**: Update with your project id, path to encoded creds, and intended resource names.  
 3. Deploy resources with the following commands:
     ```
