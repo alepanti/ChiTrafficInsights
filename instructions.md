@@ -3,11 +3,12 @@ Pipeline is set to run off this repository so it will run successfully regardles
 
 # Set up Google Cloud Project
 1. Create a Google Cloud Project
-2. Create a Service Account 
+2. Enable Compute Engine API
+3. Create a Service Account 
     Don't worry about roles, terraform will cover that.
-3. Generate JSON key for Service Account. 
+4. Generate JSON key for Service Account. 
     Save key locally.
-4. Create encoded_creds.txt file.
+5. Create encoded_creds.txt file.
     Run the following command (linux) to encode your credentials:
     ```
     base64 /path/to/credentials.json > encoded_creds.txt
