@@ -2,12 +2,36 @@ id: main
 namespace: chi-traffic
 
 inputs:
-  - id: date
+  - id: start_date
     type: DATETIME
-    defaults: "2025-03-25T20:19:00Z"
-    displayName: "Backfill date for load"
+    required: false
+    displayName: "Backfill start date for load"
+
+  - id: end_date
+    type: DATETIME
+    required: false
+    displayName: "Backfill end date for load"
 
 tasks:
+  - id: validate_inputs
+    type: io.kestra.plugin.scripts.python.Commands
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    warningOnStdErr: false
+    beforeCommands:
+      - echo "Running input validation..."
+    commands:
+      - > 
+        python -c "import os; import sys;
+        start_date = os.getenv('START_DATE');
+        end_date = os.getenv('END_DATE');
+
+        if (start_date and not end_date) or (end_date and not start_date):
+            print('ERROR: Both start_date and end_date must be provided together.');
+            sys.exit(1);
+
+        print('Validation passed: Inputs are either both provided or both empty.');"
+
   - id: workingDirectory
     type: io.kestra.plugin.core.flow.WorkingDirectory
     tasks:
@@ -26,7 +50,8 @@ tasks:
       warningOnStdErr: false
       beforeCommands:
         - pip install -r api_load/requirements.txt
-        - export BACKFILL_DATE="{{ inputs.date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
+        - export START_DATE="{{ inputs.date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
+        - export END_DATE="{{ inputs.date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
       commands:
         - python api_load/api_load.py
     

@@ -1,6 +1,7 @@
 import requests
 import os
 import csv
+import pytz
 from google.cloud import storage
 from datetime import datetime, timezone, timedelta
 
@@ -10,10 +11,18 @@ API_URL = "https://data.cityofchicago.org/resource/kf7e-cur8.json"
 GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME')
 GCS_DEST_PATH = os.getenv('CSV_FILE_PATH')
 
+central_tz = pytz.timezone("America/Chicago")
+
 # Backfill configuration
-backfill_start = os.getenv("START_DATE") or None
-backfill_end = os.getenv("END_DATE") or None
-since_date = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.000")
+backfill_start_utc = os.getenv("START_DATE") or None
+backfill_end_utc = os.getenv("END_DATE") or None
+
+since_date_utc = (datetime.now(timezone.utc) - timedelta(24))
+
+#convert to central timezone
+backfill_start = datetime.strptime(backfill_start_utc).astimezone(central_tz)
+backfill_end = datetime.strptime(backfill_end_utc).astimezone(central_tz)
+since_date = since_date_utc.astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
 print(f"{backfill_start}, {backfill_end}, {since_date}")
 
 # Temporary file path to store the CSV locally before uploading to GCS
