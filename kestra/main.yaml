@@ -20,6 +20,9 @@ tasks:
       type: io.kestra.plugin.scripts.python.Commands
       taskRunner:
         type: io.kestra.plugin.core.runner.Process
+      env:
+        GCS_BUCKET_NAME: "{{ kv('GCS_BUCKET_NAME') }}"
+        CSV_FILE_PATH: "{{ kv('CSV_FILE_PATH') }}"
       warningOnStdErr: false
       beforeCommands:
         - pip install -r api_load/requirements.txt
@@ -44,20 +47,23 @@ tasks:
       
     - id: dbtBuild
       type: io.kestra.plugin.dbt.cli.DbtCLI
-      env:
-        DBT_DATABASE: "{{kv('GCP_PROJECT_ID')}}"
-        DBT_SCHEMA: "{{kv('GCP_DATASET')}}"
-      namespaceFiles:
-        enabled: true
       containerImage: ghcr.io/kestra-io/dbt-bigquery:latest
       taskRunner:
         type: io.kestra.plugin.scripts.runner.docker.Docker
       inputFiles:
         sa.json: "{{kv('GCP_CREDS')}}"
+      env:
+        DBT_DATABASE: "{{kv('GCP_PROJECT_ID')}}"
+        DBT_SCHEMA: "{{kv('GCP_DATASET')}}"
+        DBT_RAW_DATASET: "{{ kv('DBT_RAW_DATASET') }}"
+        GOOGLE_APPLICATION_CREDENTIALS: sa.json
+      namespaceFiles:
+        enabled: true
+      storeManifest:
+        key: manifest.json
+        namespace: "{{ flow.namespace }}"
       projectDir: ./dbt
       commands:
         - dbt deps --project-dir ./dbt
         - dbt build --project-dir ./dbt
-      storeManifest:
-        key: manifest.json
-        namespace: "{{ flow.namespace }}"
+      

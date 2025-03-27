@@ -32,7 +32,6 @@ def fetch_paginated_traffic_data(since_time):
 
         data = response.json()
         if not data:
-            print("DEBUG: No data received from API, stopping pagination.")
             break
 
         all_json_data.extend(data)
@@ -45,11 +44,12 @@ def fetch_paginated_traffic_data(since_time):
 def upload_to_gcs(json_data):
 
     fieldnames = json_data[0].keys() if json_data else []
-
+    rowCount = 0
     with open(TEMP_CSV_FILE, mode='w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader() 
         for row in json_data:
+            rowCount+=1
             writer.writerow(row)
 
     # Upload the file to Google Cloud Storage
