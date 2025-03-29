@@ -56,7 +56,6 @@ tasks:
         CSV_FILE_PATH: "{{ kv('CSV_FILE_PATH') }}"
       warningOnStdErr: false
       beforeCommands:
-        - pip install -r api_load/requirements.txt
         - export START_DATE="{{ inputs.start_date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
         - export END_DATE="{{ inputs.end_date | date('yyyy-MM-dd\'T\'HH:mm:ss.SSS') }}"
       commands:
@@ -70,10 +69,6 @@ tasks:
         SOURCES__FILESYSTEM__BUCKET_URL: "{{ kv('GCS_URL')}}"
         SOURCES__FILESYSTEM__FILE_GLOB: "*.csv"
       warningOnStdErr: false
-      beforeCommands:
-        - pip install -r dlt_bq/requirements.txt
-        - dlt --non-interactive init filesystem bigquery
-        - rm .dlt/secrets.toml
       commands:
         - python dlt_bq/load_bq.py
       
@@ -98,4 +93,10 @@ tasks:
       commands:
         - dbt deps --project-dir ./dbt
         - dbt build --project-dir ./dbt
+
+triggers:
+  - id: daily
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "@daily"
+    timezone: America/New_York
       
