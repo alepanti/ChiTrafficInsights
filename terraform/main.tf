@@ -75,7 +75,7 @@ resource "google_compute_instance" "kestra_vm" {
   }
 
   metadata = {
-    file_b64    = file("/home/realadmin/ChiTrafficInsights/terraform/.gcp/encoded_creds.txt") # Path to encoded creds file
+    file_b64    = file(var.creds)
   }
 
   metadata_startup_script = <<-EOT
@@ -92,8 +92,9 @@ resource "google_compute_instance" "kestra_vm" {
     sudo curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/file_b64 | base64 --decode > creds.json
     sudo chmod 644 creds.json
 
-    # Download compose file for kestra
+    # Download docker files for kestra
     sudo curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/docker-compose.yml
+    sudo curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/Dockerfile
 
     # Run Kestra
     sudo docker-compose up -d

@@ -24,7 +24,9 @@ View data for specific date by hour to see how events have affect traffic in the
 
 [Link to view dashboard](https://lookerstudio.google.com/reporting/c6637050-b11f-45ce-b5f3-87fe0f37bda5)
 
-![alt text](images/dashboard.png)
+<p align="center">
+  <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/dashboard.png" />
+</p>
 
 #### "When Should I Leave?"  
 **Hourly speed trends show:**  
@@ -45,23 +47,48 @@ View data for specific date by hour to see how events have affect traffic in the
 ### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters. It is scheduled to run daily with backfill options available.
 
-![alt text](images/diagram.png)
+<p align="center">
+  <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/diagram.png" />
+</p>
 
 ### Tech Stack
 
 | Component              | Purpose                                                                 | Key Features Used                     |
 |------------------------|-------------------------------------------------------------------------|---------------------------------------|
 | **Google Compute Engine (GCE)** | Hosts pipeline execution environment                                  | - Docker container runtime for kestra            |
-| **Kestra (Docker)**     | Workflow orchestration                                                 | - Scheduled job execution<br>- Dependency management |
+| [**Kestra (Docker)**](kestra)     | Workflow orchestration                                                 | - Scheduled job execution<br>- Dependency management |
 | **Google Cloud Storage**     | Datalake                                               | - Destination for extracted csv files |
 | **BigQuery**     | Data Warehouse                                              | - Tables/views for analytics  |
-| **dlt**     | ETL                                             | - Extract data from GCS and load it into BigQuery  |
-| **dbt**     | Transformations                                             | - Create fact/dimension tables for analytics  |
-| **terraform**     | IaC Deployments                                             | - Ease redeployment of required cloud resources  |
+| [**dlt**](dlt_bq)     | ETL                                             | - Extract data from GCS and load it into BigQuery  |
+| [**dbt**](dbt)     | Transformations                                             | - Create fact/dimension tables for analytics  |
+| [**terraform**](terraform)     | IaC Deployments                                             | - Ease redeployment of required cloud resources  |
+
+## Kestra Flow
+I used Kestra to orchestrate my end-to-end pipeline. It runs on a daily at midnight to retrieve any new records from the last 24 hours.
+
+### Topology
+
+<p align="center">
+  <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/flow_top.png" />
+</p>
+
+## BQ Tables
+
+I used dbt to transform the data from the staging tables. I created additional fact and dimension tables to help with analyzing regional and time-based traffic.
+
+| Table Name          | Partition/Cluster       | Description                          |
+|---------------------|-------------------------|--------------------------------------|
+| stg_traffic_raw     | none                    | Raw API data                         |
+| fct_traffic                 | Parition: date/Cluster: region_id  | Incrementally loaded. Cleaned data, partitions/cluster to help optimize queries for date and regions.  |
+| fct_avg_speed_by_region_hour            | Parition: region_id | Average speeds per hour for each region, partitions help for querying regional data.|
+| dim_region                 | none                    | Region descriptions.                                  |
+| dim_date                 | none                    | Breakdown of dates by hour, month, year, and day.                                 |
+
+---
 
 ### Deployment
 
-Follow instructions laid out [here](instructions.txt)
+Follow instructions laid out [here](INSTRUCTIONS.md)
 
 ---
 

@@ -48,8 +48,6 @@ def fetch_paginated_traffic_data(headers):
             url = f"{API_URL}?$where=time>'{since_date}'&$limit={limit}&$offset={offset}"
         else:
             url = f"{API_URL}?$where=time>'{backfill_start}' AND time<'{backfill_end}'&$limit={limit}&$offset={offset}"
-
-        print(f"Fetching data with offset {offset}")
         
         response = requests.get(url, stream=True)
         response.raise_for_status()
