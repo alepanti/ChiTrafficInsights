@@ -59,6 +59,13 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 | [**dbt**](dbt)     | Transformations                                             | - Create fact/dimension tables for analytics  |
 | [**terraform**](terraform)     | IaC Deployments                                             | - Ease redeployment of required cloud resources  |
 
+## Kestra Flow
+I used Kestra to orchestrate my end-to-end pipeline. It runs on a daily at midnight to retrieve any new records from the last 24 hours.
+
+# Topology
+
+![alt text](images/flow_top.png)
+
 ## BQ Tables
 
 I used dbt to transform the data from the staging tables. I created additional fact and dimension tables to help with analyzing regional and time-based traffic.
