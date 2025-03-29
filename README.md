@@ -66,7 +66,7 @@ A batch processing data pipeline that transforms csv Chicago traffic API data in
 ## Kestra Flow
 I used Kestra to orchestrate my end-to-end pipeline. It runs on a daily at midnight to retrieve any new records from the last 24 hours.
 
-### Topology
+<p style="text-align: center;">### Topology</p>
 
 <p align="center">
   <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/flow_top.png" />
