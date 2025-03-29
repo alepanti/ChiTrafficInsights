@@ -24,6 +24,9 @@ View data for specific date by hour to see how events have affect traffic in the
 
 [Link to view dashboard](https://lookerstudio.google.com/reporting/c6637050-b11f-45ce-b5f3-87fe0f37bda5)
 
+<p align="center">
+  <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/dashboard.png" />
+</p>
 <div style="text-align: center;">![alt text](images/dashboard.png)</div>
 
 #### "When Should I Leave?"  
