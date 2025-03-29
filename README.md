@@ -79,10 +79,10 @@ I used dbt to transform the data from the staging tables. I created additional f
 | Table Name          | Partition/Cluster       | Description                          |
 |---------------------|-------------------------|--------------------------------------|
 | stg_traffic_raw     | none                    | Raw API data                         |
-| fct_traffic                 | Parition: date/Cluster: region_id  | Incrementally loaded. Cleaned data, partitions/cluster to help optimize queries for date and regions.  |
-| fct_avg_speed_by_region_hour            | Parition: region_id | Average speeds per hour for each region, partitions help for querying regional data.|
+| fct_traffic                 | Parition: month, Cluster: region_id  | Cleaned data from staging incrementally loaded. Monthly partitioning helps with querying traffic time-series data by date-ranges. Clustering by region helps with filtering down specific regions.  |
+| fct_avg_speed_by_region_hour            | Parition: region_id | Average speeds per hour for each region. Partitioning by region helps the downstream queries which highlight traffic by region. |
 | dim_region                 | none                    | Region descriptions.                                  |
-| dim_date                 | none                    | Breakdown of dates by hour,month,year, and day.                                 |
+| dim_date                 | Partition: month, Cluster: weekday and hour                  | Breakdown of dates by hour,month,year, and day. Monthly partitioning for more efficient time-based queries. Clustered by weekday and hour to help downstream analytics focusing on speeds per day/hour.                                |
 
 ---
 
