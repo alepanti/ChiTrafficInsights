@@ -27,7 +27,6 @@ View data for specific date by hour to see how events have affect traffic in the
 <p align="center">
   <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/dashboard.png" />
 </p>
-<div style="text-align: center;">![alt text](images/dashboard.png)</div>
 
 #### "When Should I Leave?"  
 **Hourly speed trends show:**  
