@@ -67,7 +67,9 @@ I used Kestra to orchestrate my end-to-end pipeline. It runs on a daily at midni
 
 ### Topology
 
-<div style="text-align: center;">![alt text](images/flow_top.png)</div>
+<p align="center">
+  <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/flow_top.png" />
+</p>
 
 ## BQ Tables
 
