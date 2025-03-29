@@ -22,7 +22,7 @@ services:
 
   kestra:
     restart: always
-    image: kestra/kestra:latest
+    build: .
     pull_policy: always
     user: "root"
     command: server standalone
