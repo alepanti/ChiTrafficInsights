@@ -48,7 +48,9 @@ View data for specific date by hour to see how events have affect traffic in the
 ### Overview
 A batch processing data pipeline that transforms csv Chicago traffic API data into actionable insights for commuters. It is scheduled to run daily with backfill options available.
 
-<div style="text-align: center;">![alt text](images/diagram.png)</div>
+<p align="center">
+  <img src="https://github.com/alepanti/ChiTrafficInsights/blob/main/images/diagram.png" />
+</p>
 
 ### Tech Stack
 
