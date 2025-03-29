@@ -5,12 +5,12 @@ inputs:
   - id: start_date
     type: DATETIME
     required: false
-    displayName: "Backfill start date for load"
+    displayName: "Start Date (optional)"
 
   - id: end_date
     type: DATETIME
     required: false
-    displayName: "Backfill end date for load"
+    displayName: "End Date (optional)"
 
 tasks:
   - id: validate_inputs
