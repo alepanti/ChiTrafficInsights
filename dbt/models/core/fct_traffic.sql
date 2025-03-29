@@ -5,7 +5,7 @@
         partition_by={
             "field": "date",
             "data_type": "timestamp",
-            "granularity": "day",
+            "granularity": "month",
         },
         cluster_by="region_id",
     )

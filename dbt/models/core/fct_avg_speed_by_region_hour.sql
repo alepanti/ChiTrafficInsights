@@ -6,6 +6,7 @@
             "data_type": "INT64",
             "range": {"start": 1, "end": 30, "interval": 1}
         },
+        cluster_by="hour",
     )
 }}
 
