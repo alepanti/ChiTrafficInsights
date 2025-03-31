@@ -11,33 +11,12 @@ inputs:
     type: DATETIME
     required: false
     displayName: "End Date (optional)"
+    dependsOn:
+      inputs:
+        - start_date
+      condition: "{{ inputs.start_date is not null }}"
 
 tasks:
-  - id: validate_inputs
-    type: io.kestra.plugin.scripts.python.Commands
-    taskRunner:
-      type: io.kestra.plugin.core.runner.Process
-    warningOnStdErr: false
-    beforeCommands:
-      - echo "Running input validation..."
-    commands:
-      - > 
-        python -c "import os; import sys; from datetime import datetime;
-        start_date = os.getenv('START_DATE');
-        end_date = os.getenv('END_DATE');
-
-        if (start_date and not end_date) or (end_date and not start_date) :
-            print('ERROR: Both start_date and end_date must be provided together.');
-            sys.exit(1);
-        elif start_date and end_date:
-          start_date = datetime.strptime(start_date, '%Y-%m-%dT%H:%M:%S.000');
-          end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.000');
-          
-          if start_date >= end_date:
-              print('ERROR: Start date must be before end date.');
-              sys.exit(1);
-
-        print('Validation passed: Inputs are either both provided or both empty.');"
 
   - id: workingDirectory
     type: io.kestra.plugin.core.flow.WorkingDirectory
@@ -99,4 +78,6 @@ triggers:
     type: io.kestra.plugin.core.trigger.Schedule
     cron: "@daily"
     timezone: America/New_York
-      
+    inputs:
+      start_date: "{{ now() | dateAdd(-1, 'DAYS') | date('yyyy-MM-dd') }}T00:00:00Z"
+      end_date: "{{ now() | date('yyyy-MM-dd') }}T00:00:00Z"
