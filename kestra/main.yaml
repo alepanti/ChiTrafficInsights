@@ -77,7 +77,7 @@ triggers:
   - id: daily
     type: io.kestra.plugin.core.trigger.Schedule
     cron: "@daily"
-    timezone: America/New_York
+    timezone: America/Chicago
     inputs:
-      start_date: "{{ now() | dateAdd(-1, 'DAYS') | date('yyyy-MM-dd') }}T00:00:00Z"
-      end_date: "{{ now() | date('yyyy-MM-dd') }}T00:00:00Z"
+      start_date: "{{ now() | dateAdd(-1, 'DAYS') | date('yyyy-MM-dd') }}T05:00:00Z"
+      end_date: "{{ now() | date('yyyy-MM-dd') }}T05:00:00Z"
