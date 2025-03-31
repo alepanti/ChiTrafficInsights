@@ -13,12 +13,18 @@ GCS_DEST_PATH = os.getenv('CSV_FILE_PATH')
 
 central_tz = pytz.timezone("America/Chicago")
 
-start_utc = os.getenv("START_DATE") or None
-end_utc = os.getenv("END_DATE") or None
+# Backfill configuration
+backfill_start_utc = os.getenv("START_DATE") or None
+backfill_end_utc = os.getenv("END_DATE") or None
 
-start_date = datetime.strptime(start_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
-end_date = datetime.strptime(end_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
+since_date_utc = (datetime.now(timezone.utc) - timedelta(days=1))
 
+# Convert to central timezone
+if backfill_start_utc is not None:
+    backfill_start = datetime.strptime(backfill_start_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
+    backfill_end = datetime.strptime(backfill_end_utc, '%Y-%m-%dT%H:%M:%S.000').astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
+else:
+    since_date = since_date_utc.astimezone(central_tz).strftime("%Y-%m-%dT%H:%M:%S.000")
 
 TEMP_CSV_FILE = "/tmp/raw_data.csv"
 
@@ -38,7 +44,10 @@ def fetch_paginated_traffic_data(headers):
     all_csv_rows = []
 
     while True:
-        url = f"{API_URL}?$where=time>'{start_date}' AND time<'{end_date}'&$limit={limit}&$offset={offset}"
+        if backfill_start_utc is None:
+            url = f"{API_URL}?$where=time>'{since_date}'&$limit={limit}&$offset={offset}"
+        else:
+            url = f"{API_URL}?$where=time>'{backfill_start}' AND time<'{backfill_end}'&$limit={limit}&$offset={offset}"
         
         response = requests.get(url, stream=True)
         response.raise_for_status()
@@ -80,7 +89,10 @@ def main():
         # First get headers
         headers = get_headers()
         
-        print(f"Fetching data between {start_date} and {end_date}")
+        if backfill_start_utc is None:
+            print(f"Fetching data since {since_date}")
+        else:
+            print(f"Fetching data between {backfill_start} and {backfill_end}")
 
         # Then fetch data
         csv_data = fetch_paginated_traffic_data(headers)
