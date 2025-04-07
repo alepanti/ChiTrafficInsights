@@ -94,7 +94,7 @@ resource "google_compute_instance" "kestra_vm" {
 
     # Download docker files for kestra
     sudo curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/docker-compose.yml
-    sudo curl -o docker-compose.yml https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/Dockerfile
+    sudo curl -o Dockerfile https://raw.githubusercontent.com/alepanti/ChiTrafficInsights/refs/heads/main/kestra/Dockerfile
 
     # Run Kestra
     sudo docker-compose up -d
